@@ -10,11 +10,11 @@ import org.sql2o.Sql2oException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class sql2oNews implements IntNews {
+public class Sql2oNews implements IntNews {
 
     private final Sql2o sql2o;
 
-    public sql2oNews(Sql2o sql2o) {
+    public Sql2oNews(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 

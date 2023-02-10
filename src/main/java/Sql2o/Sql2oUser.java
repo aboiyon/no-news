@@ -8,11 +8,11 @@ import org.sql2o.Sql2oException;
 
 import java.util.List;
 
-public class sql2oUser implements IntUser {
+public class Sql2oUser implements IntUser {
 
     private final Sql2o sql2o;
 
-    public sql2oUser(Sql2o sql2o) {
+    public Sql2oUser(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 

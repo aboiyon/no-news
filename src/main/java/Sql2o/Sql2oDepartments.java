@@ -8,11 +8,11 @@ import org.sql2o.Sql2oException;
 
 import java.util.List;
 
-public class sql2oDepartments implements IntDepartments {
+public class Sql2oDepartments implements IntDepartments {
 
 
     private final Sql2o sql2o;
-    public sql2oDepartments(Sql2o sql2o)
+    public Sql2oDepartments(Sql2o sql2o)
       { this.sql2o = sql2o; }
 
 

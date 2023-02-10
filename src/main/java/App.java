@@ -1,17 +1,15 @@
 import models.Departments;
 import models.News;
 import com.google.gson.Gson;
-import Sql2o.sql2oDepartments;
+import Sql2o.Sql2oDepartments
 import models.User;
 import org.sql2o.Sql2o;
 import static spark.Spark.*;
-import Sql2o.sql2oNews;
-import Sql2o.sql2oUser;
+import Sql2o.Sql2oNews;
+import Sql2o.Sql2oUser;
 
 
 import java.sql.Connection;
-
-import static spark.route.HttpMethod.post;
 
 public class App {
         static int getHerokuAssignedPort() {
@@ -26,9 +24,9 @@ public class App {
             port(getHerokuAssignedPort());
             staticFileLocation("/public");
 
-        sql2oDepartments departments;
-        sql2oNews sql2oNew ;
-        sql2oUser sql2ouser;
+        Sql2oDepartments departments;
+        Sql2oNews sql2oNew ;
+        Sql2oUser sql2ouser;
         Connection conn;
         Gson gson = new Gson();
 
@@ -37,9 +35,9 @@ public class App {
 //        String connectionString = "jdbc:h2:~/company.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
 //        Sql2o sql2o = new Sql2o(connectionString, "moringa", "");
 
-        departments = new sql2oDepartments(sql2o);
-        sql2oNew = new sql2oNews(sql2o);
-        sql2ouser = new sql2oUser(sql2o);
+        departments = new Sql2oDepartments(sql2o);
+        sql2oNew = new Sql2oNews(sql2o);
+        sql2ouser = new Sql2oUser(sql2o);
 //        conn = sql2o.open();
 
         post("/department/new", "application/json", (req, res) -> {
