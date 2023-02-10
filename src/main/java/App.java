@@ -1,7 +1,7 @@
 import models.Departments;
 import models.News;
 import com.google.gson.Gson;
-import Sql2o.Sql2oDepartments
+import Sql2o.Sql2oDepartments;
 import models.User;
 import org.sql2o.Sql2o;
 import static spark.Spark.*;
