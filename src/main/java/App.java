@@ -8,7 +8,6 @@ import static spark.Spark.*;
 import Sql2o.Sql2oNews;
 import Sql2o.Sql2oUser;
 
-
 import java.sql.Connection;
 
 public class App {

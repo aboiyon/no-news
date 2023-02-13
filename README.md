@@ -11,7 +11,7 @@
 
 ## Author
 
-[Michael Kiprotich](https://github.com/michael-kip)
+[Michael Kiprotich](https://github.com/aboiyon)
 
 ## Description
 
@@ -19,7 +19,7 @@ Application that fetches information from an api used by a certain imaginary new
 
 ## Live Page
 
-https://michael-kip.github.io/
+https://aboiyon.github.io/
 
 ## Installation / Setup instruction
 
@@ -29,7 +29,7 @@ https://michael-kip.github.io/
 4. jdk
 5. maven
 
-- Clone this project using ` git clone https://github.com/michael-kip/no-news.git`
+- Clone this project using ` git clone https://github.com/aboiyon/no-news.git`
 
 ## Running the Tests
 
@@ -69,7 +69,7 @@ Development Database
 
 ## Contact Information
 
-If you have any question or contributions, please email me at [michael.kiprotich@student.moringaschool.com]
+If you have any question or contributions, please email me at [aboiyonseronik@gmail.com]
 
 ## License
 
