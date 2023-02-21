@@ -10,7 +10,6 @@ public class Departments {
 
 
     public Departments( String departmentName , int NoWorkers) {
-
         this.departmentName = departmentName;
         this.NoWorkers = NoWorkers;
     }
