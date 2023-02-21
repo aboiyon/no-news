@@ -29,8 +29,8 @@ public class App {
         Connection conn;
         Gson gson = new Gson();
 
-        String connectionString = "jdbc:postgresql://ec2-44-192-245-97.compute-1.amazonaws.com:5432/d25447eo48khd6?sslmode=require"; //!
-            Sql2o sql2o = new Sql2o(connectionString, "baovfjsipcsjhq", "9da962fafc193eb2a850ab013db7ed5441025e1cabfaa10171e404752f870839"); //!
+        String connectionString = "jdbc:postgresql://localhost:5432/jadle";
+            Sql2o sql2o = new Sql2o(connectionString, "cheruiyot", ""); //!
 //        String connectionString = "jdbc:h2:~/company.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
 //        Sql2o sql2o = new Sql2o(connectionString, "moringa", "");
 
