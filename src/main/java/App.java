@@ -7,7 +7,10 @@ import org.sql2o.Sql2o;
 import static spark.Spark.*;
 import Sql2o.Sql2oNews;
 import Sql2o.Sql2oUser;
+import spark.Spark;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 
 public class App {
@@ -18,6 +21,23 @@ public class App {
             }
             return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
         }
+
+        private static final String DATABASE_URL = "";
+        private static final String SERVICE_ACCOUNT_PATH = "";
+
+        private static void initializeFirebase(){
+            try {
+                FileInputStream serviceAccount = new FileInputStream(SERVICE_ACCOUNT_PATH);
+                FirebaseOptions options = new FirebaseOptions.Builder()
+                        .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                        .setDatabaseUrl(DATABASE_URL)
+                        .build();
+                FirebaseApp.initializeApp(options);
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
         public static void main(String[] args) {
 
             port(getHerokuAssignedPort());
@@ -27,7 +47,13 @@ public class App {
         Sql2oNews sql2oNew ;
         Sql2oUser sql2ouser;
         Connection conn;
+
+//        Initialize Firebase
+        initializeFirebase();
         Gson gson = new Gson();
+        DatabaseReference departmentsRef = FirebaseDatabase.getInstance().getReference("departments");
+        DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("news");
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
 
         String connectionString = "jdbc:postgresql://localhost:5432/jadle";
             Sql2o sql2o = new Sql2o(connectionString, "cheruiyot", ""); //!
@@ -39,42 +65,40 @@ public class App {
         sql2ouser = new Sql2oUser(sql2o);
 //        conn = sql2o.open();
 
-        post("/department/new", "application/json", (req, res) -> {
+        Spark.post("/department/new", "application/json", (req, res) -> {
             Departments department1 = gson.fromJson(req.body(), Departments.class);
             departments.create(department1);
             res.status(201);
             res.type("application/json");
             return gson.toJson(department1);
         });
-        get("/department", "application/json", (req, res) -> {
+        Spark.get("/department", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(departments.findAll());
         });
 
-        post("/news/new", "application/json", (req, res) -> {
+        Spark.post("/news/new", "application/json", (req, res) -> {
             News news = gson.fromJson(req.body(), News.class);
             sql2oNew.create(news);
             res.status(201);
             res.type("application/json");
             return gson.toJson(news);
         });
-        get("/news", "application/json", (req, res) -> {
+        Spark.get("/news", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(sql2oNew.findAll());
         });
 
-        post("/users/new", "application/json", (req, res) -> {
+        Spark.post("/users/new", "application/json", (req, res) -> {
             User user = gson.fromJson(req.body(), User.class);
             sql2ouser.create(user);
             res.status(201);
             res.type("application/json");
             return gson.toJson(user);
         });
-        get("/users", "application/json", (req, res) -> {
+        Spark.get("/users", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(sql2ouser.findAll());
         });
-
-
     }
 }
